@@ -5,14 +5,13 @@ metadata:
 spec:
   goTemplate: true
   generators:
-  - git:
-      repoURL: https://github.com/Stemirabo/argo-examples.git
-      revision: HEAD
-      files:
-      - path: "helm-webapp/values-*.yaml"
+  - list:
+      elements:
+      - val: dev
+      - val: prod
   template:
     metadata:
-      name: 'innova-{{.path.filename}}'
+      name: 'innova-{{.val}}'
     spec:
       project: test1
       source:
@@ -22,7 +21,7 @@ spec:
         helm:
           valueFiles:
             - values.yaml
-            - '{{.path.filename}}'
+            - 'values-{{.path.filename}}.yaml'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: test1
