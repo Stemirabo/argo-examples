@@ -17,10 +17,10 @@ spec:
       source:
         repoURL: https://github.com/Stemirabo/argo-examples.git
         path: helm-webapp
-        targetRevision: HEAD
+        targetRevision: master
         helm:
           valueFiles:
-            - values.yaml
+          - "values.yaml"
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: test1
