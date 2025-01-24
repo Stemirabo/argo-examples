@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: testSet
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/Stemirabo/argo-examples.git
+        revision: master
+        files:
+        - path: "heml-webapp/values-*.yaml"
+  template:
+    metadata:
+      name: '{{.path.filename | strings.TrimPrefix "values-" | strings.TrimSuffix ".yaml"}}'
+    spec:
+      project: test1
+      source:
+        repoURL: https://github.com/Stemirabo/argo-examples.git
+        path: helm-webapp
+        targetRevision: master
+        helm:
+          valueFiles:
+            - values.yaml
+            - {{.path.filename}}
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: test1
+      syncPolicy:
+        automated:
+          prune: true
