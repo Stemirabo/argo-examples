@@ -12,7 +12,7 @@ spec:
         - path: "helm-webapp/values-*.yaml"
   template:
     metadata:
-      name: 'innova{{.path.filename | strings.TrimPrefix "values" | strings.TrimSuffix ".yaml"}}'
+      name: 'innova-{{.path.filename}}'
     spec:
       project: test1
       source:
