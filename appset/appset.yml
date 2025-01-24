@@ -13,7 +13,7 @@ spec:
         - path: "heml-webapp/values-*.yaml"
   template:
     metadata:
-      name: '{{.path.filename | strings.TrimPrefix "values-" | strings.TrimSuffix ".yaml"}}'
+      name: 'innova{{.path.filename | strings.TrimPrefix "values" | strings.TrimSuffix ".yaml"}}'
     spec:
       project: test1
       source:
@@ -27,6 +27,3 @@ spec:
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: test1
-      syncPolicy:
-        automated:
-          prune: true
