@@ -4,7 +4,6 @@ metadata:
   name: testset
 spec:
   goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
         repoURL: https://github.com/Stemirabo/argo-examples.git
