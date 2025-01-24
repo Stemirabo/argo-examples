@@ -7,7 +7,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/Stemirabo/argo-examples.git
-        revision: master
+        revision: HEAD
         files:
         - path: "helm-webapp/values-*.yaml"
   template:
