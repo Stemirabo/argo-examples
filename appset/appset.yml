@@ -5,11 +5,11 @@ metadata:
 spec:
   goTemplate: true
   generators:
-    - git:
-        repoURL: https://github.com/Stemirabo/argo-examples.git
-        revision: HEAD
-        files:
-          - path: "helm-webapp/values-*.yaml"
+  - git:
+      repoURL: https://github.com/Stemirabo/argo-examples.git
+      revision: HEAD
+      files:
+      - path: "helm-webapp/values-*.yaml"
   template:
     metadata:
       name: 'innova-{{.path.filename}}'
