@@ -21,7 +21,7 @@ spec:
         helm:
           valueFiles:
             - values.yaml
-            - 'values-{{.path.filename}}.yaml'
+            - 'values-{{.val}}.yaml'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: test1
