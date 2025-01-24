@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/Stemirabo/argo-examples.git
         revision: master
         files:
-        - path: "heml-webapp/values-*.yaml"
+        - path: "helm-webapp/values-*.yaml"
   template:
     metadata:
       name: 'innova{{.path.filename | strings.TrimPrefix "values" | strings.TrimSuffix ".yaml"}}'
