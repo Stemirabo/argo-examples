@@ -17,7 +17,7 @@ spec:
       source:
         repoURL: https://github.com/Stemirabo/argo-examples.git
         path: helm-webapp
-        targetRevision: master
+        targetRevision: HEAD
         helm:
           valueFiles:
           - "values.yaml"
