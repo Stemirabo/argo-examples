@@ -14,7 +14,7 @@ spec:
     metadata:
       name: 'innova-{{.potato}}'
     spec:
-      project: test1
+      project: default
       source:
         repoURL: https://github.com/Stemirabo/argo-examples.git
         targetRevision: HEAD
@@ -24,4 +24,4 @@ spec:
           - values.yaml
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: test1
+        namespace: default
