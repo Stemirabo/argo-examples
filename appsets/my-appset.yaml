@@ -9,11 +9,11 @@ spec:
   generators:
   - list:
       elements:
-      - potato: dev
-      - potato: prod
+      - xyz: dev
+      - xyz: prod
   template:
     metadata:
-      name: 'innova-{{potato}}'
+      name: 'innova-{{xyz}}'
     spec:
       project: default
       source:
