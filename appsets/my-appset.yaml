@@ -12,7 +12,7 @@ spec:
       - potato: prod
   template:
     metadata:
-      name: 'innova-{{.potato}}'
+      name: 'innova-{{potato}}'
     spec:
       project: default
       source:
