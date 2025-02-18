@@ -8,11 +8,11 @@ spec:
   generators:
   - list:
       elements:
-      - val: dev
-      - val: prod
+      - potato: dev
+      - potato: prod
   template:
     metadata:
-      name: 'innova-{{.val}}'
+      name: 'innova-{{.potato}}'
     spec:
       project: test1
       source:
