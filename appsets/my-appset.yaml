@@ -5,24 +5,27 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - list:
-      elements:
-      - namespace: default
-        xyz: dev
-      - namespace: default
-        xyz: prod
+    - git:
+        repoURL: https://github.com/Stemirabo/argo-examples.git
+        revision: HEAD
+        files:
+        - path: "helm-webapp/values-*.yaml"
   template:
     metadata:
-      name: '{{xyz}}-application'
+      name: 'innova{{.path.filename | strings.TrimPrefix "values" | strings.TrimSuffix ".yaml"}}'
     spec:
       project: default
       source:
         repoURL: https://github.com/Stemirabo/argo-examples.git
         targetRevision: HEAD
         path: helm-webapp
+        helm:
+          valueFiles:
+            - values.yaml
+            - '{{.path.filename}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{namespace}}'
+        namespace: 'test'
       syncPolicy:
         automated: {}
         syncOptions:
