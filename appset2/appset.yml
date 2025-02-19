@@ -5,15 +5,14 @@ metadata:
   namespace: default
 spec:
   generators:
-  - list:
-      elements:
-      - xyz: dev
-        path: v09-argocd-applicationSet-1/git-generator/resources/nginx-helm
-      - xyz: prod
-        path: v09-argocd-applicationSet-1/git-generator/resources/nginx-helm
+  - git:
+      repoURL: https://github.com/devopshobbies/argocd-tutorial.git
+      revision: main
+      directories:
+      - path: v09-argocd-applicationSet-1/git-generator/resources/*
   template:
     metadata:
-      name: '{{xyz}}-application'
+      name: '{{path.basename}}-application'
     spec:
       project: default
       source:
