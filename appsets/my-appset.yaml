@@ -22,7 +22,7 @@ spec:
         path: helm-webapp
       destination:
         server: https://kubernetes.default.svc
-        namespace: {{namespace}}
+        namespace: '{{namespace}}'
       syncPolicy:
         automated: {}
         syncOptions:
