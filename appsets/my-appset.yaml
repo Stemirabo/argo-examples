@@ -2,27 +2,28 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: my-appset
+  namespace: default
 spec:
-  goTemplate: true
-  goTemplateOptions:
-    - missingkey=error
   generators:
   - list:
       elements:
-      - xyz: dev
-      - xyz: prod
+      - namespace: default
+        xyz: dev
+      - namespace: default
+        xyz: prod
   template:
     metadata:
-      name: 'innova-{{xyz}}'
+      name: '{{xyz}}-application'
     spec:
       project: default
       source:
         repoURL: https://github.com/Stemirabo/argo-examples.git
         targetRevision: HEAD
         path: helm-webapp
-        helm:
-          valueFiles:
-          - values.yaml
       destination:
-        server: 'https://kubernetes.default.svc'
+        server: https://kubernetes.default.svc
         namespace: default
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
