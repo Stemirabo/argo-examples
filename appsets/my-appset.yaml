@@ -4,6 +4,9 @@ metadata:
   name: my-appset
   namespace: argocd
 spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
   generators:
     - git:
         repoURL: https://github.com/Stemirabo/argo-examples.git
