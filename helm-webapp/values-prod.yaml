@@ -1,6 +1,8 @@
+appName: myhelmapp-prod
 
 replicas: 4
 
 configmap:
+  name: myhelmapp-configmap-v1-prod
   data:
     CUSTOM_HEADER: 'This is on the PROD environment!'
