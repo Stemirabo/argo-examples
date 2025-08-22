@@ -3,9 +3,9 @@ appName: myhelmapp
 port: 80
 
 configmap:
-  name: myhelmapp-configmap-v1
+  name: '{{ Release.Name }}-configmap-v1-{{ environment }}'
   data:
-    CUSTOM_HEADER: 'This app was deployed with helm! 412'
+    CUSTOM_HEADER: 'This {{ Release.Name }} app was deployed in {{ environment }} with helm and ARGOCD!!!'
 
 image:
   name: devopsjourney1/mywebapp
