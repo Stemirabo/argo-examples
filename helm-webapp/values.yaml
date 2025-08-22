@@ -2,6 +2,9 @@ appName: myhelmapp
 
 port: 80
 
+configmap:
+  name: 'configmap-v1'
+
 image:
   name: devopsjourney1/mywebapp
   tag: latest
