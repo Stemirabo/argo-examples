@@ -25,7 +25,7 @@ spec:
         - containerPort: 80
         envFrom:
         - configMapRef:
-            name: {{ .Values.configmap.name }}
+            name: '{{ .Release.Name }}-{{ .Values.configmap.name }}'
         resources:
           requests:
             memory: "16Mi"
