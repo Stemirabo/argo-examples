@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: my-appset
+  name: dev-appset
   namespace: argocd
 spec:
   goTemplate: true
@@ -12,10 +12,10 @@ spec:
         repoURL: https://github.com/Stemirabo/argo-examples.git
         revision: HEAD
         files:
-        - path: "helm-webapp/values-*.yaml"
+        - path: "sites/**/values.yaml"
   template:
     metadata:
-      name: 'innova-{{trimSuffix ".yaml" (trimPrefix "values-" .path.filename)}}'
+      name: 'innova-{{.path.basename}}'
     spec:
       project: default
       source:
@@ -25,7 +25,8 @@ spec:
         helm:
           valueFiles:
             - values.yaml
-            - '{{.path.filename}}'
+            - /zones/dev.values.yaml
+            - '{{.path.path}}/{{.path.filename}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: 'default'

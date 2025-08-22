@@ -1,0 +1,8 @@
+environment: qa
+
+replicas: 1
+
+configmap:
+  name: myhelmapp-configmap-v1-qa
+  data:
+    CUSTOM_HEADER: 'This is on the QA environment!'
