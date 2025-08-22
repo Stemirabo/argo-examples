@@ -1,8 +1,8 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: '{{ Release.Name }}-{{ .Values.configmap.name }}'
+  name: '{{ .Release.Name }}-{{ .Values.configmap.name }}'
 data:
   BG_COLOR: '#12181b'
   FONT_COLOR: '#FFFFFF'
-  CUSTOM_HEADER: 'This {{ Release.Name }} app was deployed in {{ environment }} with helm and ARGOCD!!!'
+  CUSTOM_HEADER: 'This {{ .Release.Name }} app was deployed in {{ environment }} with helm and ARGOCD!!!'
