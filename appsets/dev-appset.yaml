@@ -26,7 +26,7 @@ spec:
           valueFiles:
             - values.yaml
             - /zones/dev.values.yaml
-            - '{{.path.path}}/{{.path.filename}}'
+            - '/{{.path.path}}/{{.path.filename}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: 'default'
