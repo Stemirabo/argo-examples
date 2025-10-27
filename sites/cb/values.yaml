@@ -1,1 +1,6 @@
 appName: innova-cb
+enabled: true
+targetEnv:
+  - dev
+  - qa
+  - prod
