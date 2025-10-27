@@ -9,20 +9,20 @@ spec:
     - missingkey=error
   generators:
     - matrix:
-      generators:
-        - git:
-            repoURL: https://github.com/Stemirabo/argo-examples.git
-            revision: HEAD
-            files:
-            - path: "sites/**/values.yaml"
-        - list:
-            elements:
-              - filter: "true"
-      selector:
-        matchExpressions:
-          - key: values.enabled
-            operator: In
-            values: ["true"]
+        generators:
+          - git:
+              repoURL: https://github.com/Stemirabo/argo-examples.git
+              revision: HEAD
+              files:
+              - path: "sites/**/values.yaml"
+          - list:
+              elements:
+                - filter: "true"
+        selector:
+          matchExpressions:
+            - key: values.enabled
+              operator: In
+              values: ["true"]
   template:
     metadata:
       name: 'innova-{{.path.basename}}-dev'
