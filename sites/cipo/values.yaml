@@ -1,2 +1,3 @@
 appName: innova-cipo
 replicas: 2
+appset-enabled: true
