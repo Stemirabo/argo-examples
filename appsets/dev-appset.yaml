@@ -8,11 +8,16 @@ spec:
   goTemplateOptions:
     - missingkey=error
   generators:
-    - git:
-        repoURL: https://github.com/Stemirabo/argo-examples.git
-        revision: HEAD
-        files:
-        - path: "sites/**/values.yaml"
+    - matrix:
+      generators:
+        - git:
+            repoURL: https://github.com/Stemirabo/argo-examples.git
+            revision: HEAD
+            files:
+            - path: "sites/**/values.yaml"
+        - list:
+            elements:
+              - filter: "true"
       selector:
         matchExpressions:
           - key: values.enabled
