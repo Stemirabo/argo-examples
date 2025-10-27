@@ -13,12 +13,12 @@ spec:
         revision: HEAD
         files:
         - path: "sites/**/values.yaml"
-    selector:
-      matchExpressions:
-        - key: values.enabled
-          operator: In
-          values: 
-            - "true"
+      selector:
+        matchExpressions:
+          - key: values.enabled
+            operator: In
+            values: 
+              - "true"
   template:
     metadata:
       name: 'innova-{{.path.basename}}-dev'
