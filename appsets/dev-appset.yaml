@@ -22,7 +22,8 @@ spec:
           matchExpressions:
             - key: values.enabled
               operator: In
-              values: ["true"]
+              values: 
+                - true
   template:
     metadata:
       name: 'innova-{{.path.basename}}-dev'
