@@ -15,7 +15,7 @@ spec:
         - path: "sites/**/values.yaml"
       selector:
         matchExpressions:
-          - key: values.enabled
+          - key: .values.enabled
             operator: In
             values: 
               - "true"
