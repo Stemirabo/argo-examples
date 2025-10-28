@@ -19,6 +19,9 @@ spec:
           #   operator: In
           #   values: 
           #     - "true"
+          # - key: app.bin
+          #   operator: In
+          #   values: [0,1,2,3]
           - key: targetEnv
             operator: In
             values: 
