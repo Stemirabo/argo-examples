@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: dev-appset
+  name: qa-appset
   namespace: argocd
 spec:
   goTemplate: true
@@ -19,7 +19,7 @@ spec:
             operator: In
             values:
               - "true"
-          - key: argocd.environments.dev
+          - key: argocd.environments.qa
             operator: In
             values:
               - "true"
@@ -28,7 +28,7 @@ spec:
             values: [0,1,2]
   template:
     metadata:
-      name: '{{.path.basename}}-dev'
+      name: '{{.path.basename}}-qa'
     spec:
       project: default
       source:
@@ -38,7 +38,7 @@ spec:
         helm:
           valueFiles:
             - values.yaml
-            - /zones/dev.values.yaml
+            - /zones/qa.values.yaml
             - '/{{.path.path}}/{{.path.filename}}'
       destination:
         server: https://kubernetes.default.svc

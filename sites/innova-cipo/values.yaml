@@ -1,0 +1,11 @@
+app:
+  name: innova-cipo
+  bin: 2
+replicas: 2
+argocd:
+  enabled: true
+  environments:
+    dev: true
+    qa: false
+    uat: false
+    prod: false
