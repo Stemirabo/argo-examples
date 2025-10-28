@@ -1,3 +1,10 @@
-appName: innova-cb
-enabled: true
-targetEnv: [dev,qa,prod]
+app:
+  name: innova-cb
+  bin: 1
+argocd:
+  enabled: true
+  environments:
+    dev: false
+    qa: true
+    uat: true
+    prod: true
