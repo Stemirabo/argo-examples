@@ -1,3 +1,5 @@
 appName: innova-cipo
 replicas: 2
 enabled: true
+targetEnv:
+  - dev
