@@ -21,7 +21,8 @@ spec:
               - "true"
           - key: "dev" 
             operator: In
-            values: targetEnv
+            values: 
+              - targetEnv
   template:
     metadata:
       name: 'innova-{{.path.basename}}-dev'
