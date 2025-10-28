@@ -15,12 +15,12 @@ spec:
         - path: "sites/**/values.yaml"
       selector:
         matchExpressions:
-          - key: enabled
-            operator: In
-            values: 
-              - "true"
+          # - key: enabled
+          #   operator: In
+          #   values: 
+          #     - "true"
           - key: targetEnv
-            operator: Contains
+            operator: In
             values: 
               - "dev"
   template:
