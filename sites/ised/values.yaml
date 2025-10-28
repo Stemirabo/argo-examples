@@ -1,2 +1,4 @@
 appName: innova-ised
 replicas: 2
+targetEnv:
+  - qa
