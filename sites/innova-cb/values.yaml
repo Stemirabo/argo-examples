@@ -2,7 +2,7 @@ app:
   name: innova-cb
   bin: 1
 argocd:
-  enabled: true
+  enabled: false
   environments:
     dev: false
     qa: true
