@@ -32,8 +32,20 @@ spec:
               elements:
                 - env: dev
                   namespace: ised-dev
+                  selector:
+                    matchExpressions:
+                      - key: argocd.environment.dev
+                        operator: In
+                        values:
+                          - "true"
                 - env: qa
                   namespace: ised-qa
+                  selector:
+                    matchExpressions:
+                      - key: argocd.environment.qa
+                        operator: In
+                        values:
+                          - "true"
   template:
     metadata:
       name: '{{.path.basename}}-{{.env}}'
@@ -55,8 +67,3 @@ spec:
         automated: {}
         syncOptions:
           - CreateNamespace=true
-  templatePatch:
-    - merge:
-        when:
-          - "{{ env == 'dev' and argocd.environments.dev == true }}"
-          - "{{ env == 'qa' and argocd.environments.qa == true }}"
