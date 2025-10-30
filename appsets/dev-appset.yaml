@@ -42,7 +42,7 @@ spec:
             - '/{{.path.path}}/{{.path.filename}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{.namespace}}'
+        namespace: 'ised-dev'
       syncPolicy:
         automated: {}
         syncOptions:
