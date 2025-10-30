@@ -40,6 +40,9 @@ spec:
             - values.yaml
             - /zones/dev.values.yaml
             - '/{{.path.path}}/{{.path.filename}}'
+        parameters:
+          - name: "replicas"
+            value: "1"
       destination:
         server: https://kubernetes.default.svc
         namespace: 'ised-dev'
