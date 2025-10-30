@@ -13,8 +13,8 @@ spec:
         revision: HEAD
         files:
         - path: "sites/**/values.yaml"
-        values:
-          replicas: '1'
+        # values:
+        #   replicas: '1'
       selector:
         matchExpressions:
           - key: argocd.enabled
@@ -43,9 +43,9 @@ spec:
             - values.yaml
             - /zones/dev.values.yaml
             - '/{{.path.path}}/{{.path.filename}}'
-        # parameters:
-        #   - name: "replicas"
-        #     value: 1
+        parameters:
+          - name: 'replicas'
+            value: '1'
       destination:
         server: https://kubernetes.default.svc
         namespace: 'ised-dev'
