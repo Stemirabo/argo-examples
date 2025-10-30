@@ -8,27 +8,35 @@ spec:
   goTemplateOptions:
     - missingkey=error
   generators:
-    - git:
-        repoURL: https://github.com/Stemirabo/argo-examples.git
-        revision: HEAD
-        files:
-        - path: "sites/**/values.yaml"
-      selector:
-        matchExpressions:
-          - key: argocd.enabled
-            operator: In
-            values:
-              - "true"
-          - key: argocd.environments.dev
-            operator: In
-            values:
-              - "true"
-          - key: app.bin
-            operator: In
-            values: ['0','1','2']
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/Stemirabo/argo-examples.git
+              revision: HEAD
+              files:
+              - path: "sites/**/values.yaml"
+            selector:
+              matchExpressions:
+                - key: argocd.enabled
+                  operator: In
+                  values:
+                    - "true"
+                - key: argocd.environments.dev
+                  operator: In
+                  values:
+                    - "true"
+                - key: app.bin
+                  operator: In
+                  values: ['0','1','2']
+          - list:
+              elements:
+                - env: dev
+                  namespace: ised-dev
+                - env: qa
+                  namespace: ised-qa
   template:
     metadata:
-      name: '{{.path.basename}}-dev'
+      name: '{{.path.basename}}-{{.env}}'
     spec:
       project: default
       source:
@@ -38,11 +46,11 @@ spec:
         helm:
           valueFiles:
             - values.yaml
-            - /zones/dev.values.yaml
+            - /zones/{{.env}}.values.yaml
             - '/{{.path.path}}/{{.path.filename}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: 'default'
+        namespace: '{{.namespace}}'
       syncPolicy:
         automated: {}
         syncOptions:
