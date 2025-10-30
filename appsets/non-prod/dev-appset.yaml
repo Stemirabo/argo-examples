@@ -43,7 +43,7 @@ spec:
             - values.yaml
             - /zones/dev.values.yaml
             - '/{{.path.path}}/{{.path.filename}}'
-          parameters:
+          parameters: # overwrite values parameter for all sites
             - name: "replicas"
               value: "1"
       destination:

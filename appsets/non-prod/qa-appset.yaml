@@ -40,6 +40,9 @@ spec:
             - values.yaml
             - /zones/qa.values.yaml
             - '/{{.path.path}}/{{.path.filename}}'
+          parameters: # overwrite values parameter for all sites
+            - name: "replicas"
+              value: "1"
       destination:
         server: https://kubernetes.default.svc
         namespace: 'ised-qa'
