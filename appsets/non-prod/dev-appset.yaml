@@ -29,6 +29,7 @@ spec:
   template:
     metadata:
       name: '{{.path.basename}}-dev'
+      namespace: 'ised-dev'
     spec:
       project: default
       source:
