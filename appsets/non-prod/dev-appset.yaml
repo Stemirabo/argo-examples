@@ -14,7 +14,7 @@ spec:
         files:
         - path: "sites/**/values.yaml"
         values:
-          replicas: 1
+          replicas: '1'
       selector:
         matchExpressions:
           - key: argocd.enabled
