@@ -34,6 +34,12 @@ spec:
                   namespace: ised-dev
                 - env: qa
                   namespace: ised-qa
+      selector:
+        matchExpressions:
+          - key: argocd.environment.{{.env}}
+            operator: In
+            values:
+              - "true"
   template:
     metadata:
       name: '{{.path.basename}}-{{.env}}'
