@@ -13,6 +13,8 @@ spec:
         revision: HEAD
         files:
         - path: "sites/**/values.yaml"
+        values:
+          replicas: 1
       selector:
         matchExpressions:
           - key: argocd.enabled
