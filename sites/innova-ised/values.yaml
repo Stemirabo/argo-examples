@@ -1,11 +1,11 @@
 app:
   name: innova-ised
-  bin: 3
-replicas: 2
+  bin: 0
+replicas: 1
 argocd:
   enabled: true
   environments:
-    dev: false
+    dev: true
     qa: true
     uat: true
     prod: true
