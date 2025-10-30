@@ -28,7 +28,7 @@ spec:
             values: ['0','1','2']
   template:
     metadata:
-      name: '{{.path.basename}}'
+      name: '{{.path.basename}}-dev'
     spec:
       project: default
       source:
