@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dev-appset
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - git:
+        repoURL: https://github.com/Stemirabo/argo-examples.git
+        revision: HEAD
+        files:
+        - path: "sites/**/values.yaml"
+      selector:
+        matchExpressions:
+          - key: argocd.enabled
+            operator: In
+            values:
+              - "true"
+          - key: argocd.environments.dev
+            operator: In
+            values:
+              - "true"
+          - key: app.bin
+            operator: In
+            values: ['0','1','2']
+  template:
+    metadata:
+      name: '{{.path.basename}}-dev'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Stemirabo/argo-examples.git
+        targetRevision: HEAD
+        path: helm-webapp
+        helm:
+          valueFiles:
+            - values.yaml
+            - /zones/dev.values.yaml
+            - '/{{.path.path}}/{{.path.filename}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'ised-dev'
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
