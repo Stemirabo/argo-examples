@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: qa-appset
-  namespace: argocd
+  namespace: ised-qa
 spec:
   goTemplate: true
   goTemplateOptions:
@@ -42,8 +42,8 @@ spec:
             - '/{{.path.path}}/{{.path.filename}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: 'default'
+        namespace: 'ised-qa'
       syncPolicy:
         automated: {}
         syncOptions:
-          - CreateNamespace=false
+          - CreateNamespace=true

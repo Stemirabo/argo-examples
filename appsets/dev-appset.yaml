@@ -2,53 +2,33 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: dev-appset
-  namespace: argocd
+  namespace: ised-dev
 spec:
   goTemplate: true
   goTemplateOptions:
     - missingkey=error
   generators:
-    - matrix:
-        generators:
-          - git:
-              repoURL: https://github.com/Stemirabo/argo-examples.git
-              revision: HEAD
-              files:
-              - path: "sites/**/values.yaml"
-            selector:
-              matchExpressions:
-                - key: argocd.enabled
-                  operator: In
-                  values:
-                    - "true"
-                # - key: argocd.environments.dev
-                #   operator: In
-                #   values:
-                #     - "true"
-                - key: app.bin
-                  operator: In
-                  values: ['0','1','2']
-          - list:
-              elements:
-                - env: dev
-                  namespace: ised-dev
-                  selector:
-                    matchExpressions:
-                      - key: argocd.environment.dev
-                        operator: In
-                        values:
-                          - "true"
-                - env: qa
-                  namespace: ised-qa
-                  selector:
-                    matchExpressions:
-                      - key: argocd.environment.qa
-                        operator: In
-                        values:
-                          - "true"
+    - git:
+        repoURL: https://github.com/Stemirabo/argo-examples.git
+        revision: HEAD
+        files:
+        - path: "sites/**/values.yaml"
+      selector:
+        matchExpressions:
+          - key: argocd.enabled
+            operator: In
+            values:
+              - "true"
+          - key: argocd.environments.dev
+            operator: In
+            values:
+              - "true"
+          - key: app.bin
+            operator: In
+            values: ['0','1','2']
   template:
     metadata:
-      name: '{{.path.basename}}-{{.env}}'
+      name: '{{.path.basename}}-dev'
     spec:
       project: default
       source:
@@ -58,7 +38,7 @@ spec:
         helm:
           valueFiles:
             - values.yaml
-            - /zones/{{.env}}.values.yaml
+            - /zones/dev.values.yaml
             - '/{{.path.path}}/{{.path.filename}}'
       destination:
         server: https://kubernetes.default.svc
