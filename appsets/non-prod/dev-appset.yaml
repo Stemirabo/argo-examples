@@ -4,6 +4,8 @@ metadata:
   name: dev-appset
   namespace: 'ised-dev'
 spec:
+  destinations:
+    - namespace: 'ised-dev'
   goTemplate: true
   goTemplateOptions:
     - missingkey=error
