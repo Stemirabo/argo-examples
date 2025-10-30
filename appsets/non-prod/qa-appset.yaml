@@ -28,7 +28,7 @@ spec:
             values: ['0','1','2','3']
   template:
     metadata:
-      name: '{{.path.basename}}-qa'
+      name: '{{.path.basename}}'
     spec:
       project: default
       source:
@@ -46,4 +46,4 @@ spec:
       syncPolicy:
         automated: {}
         syncOptions:
-          - CreateNamespace=true
+          - CreateNamespace=false
