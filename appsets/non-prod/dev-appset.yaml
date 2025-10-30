@@ -2,10 +2,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: dev-appset
-  namespace: 'ised-dev'
+  namespace: argocd
 spec:
-  sourceNamespaces:
-    - 'ised-dev'
   goTemplate: true
   goTemplateOptions:
     - missingkey=error
