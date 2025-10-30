@@ -21,10 +21,10 @@ spec:
                   operator: In
                   values:
                     - "true"
-                - key: argocd.environments.dev
-                  operator: In
-                  values:
-                    - "true"
+                # - key: argocd.environments.dev
+                #   operator: In
+                #   values:
+                #     - "true"
                 - key: app.bin
                   operator: In
                   values: ['0','1','2']
@@ -32,14 +32,20 @@ spec:
               elements:
                 - env: dev
                   namespace: ised-dev
+                  selector:
+                    matchExpressions:
+                      - key: argocd.environment.dev
+                        operator: In
+                        values:
+                          - "true"
                 - env: qa
                   namespace: ised-qa
-      selector:
-        matchExpressions:
-          - key: argocd.environment.{{.env}}
-            operator: In
-            values:
-              - "true"
+                  selector:
+                    matchExpressions:
+                      - key: argocd.environment.qa
+                        operator: In
+                        values:
+                          - "true"
   template:
     metadata:
       name: '{{.path.basename}}-{{.env}}'
